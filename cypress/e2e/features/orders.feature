@@ -5,12 +5,12 @@ Feature: Shopping
 
     Background:
         Given I am at the Login page
-        And I log in to the Storefront with user "5010"  and password "Password1"
+        And I log in to the Storefront with user "1040"  and password "Password1"
 
     Scenario Outline: Order Placed with "<shipping_method>" Shipping, "<payment_method>" Payment and Donation="<donation>"
         When I add the item to the shopping cart
             | sku  | item                   | quantity | price | pv    |
-            | 3500 | Basil Essential Oil    | 2        | 26.50 | 26.5  |
+            #| 3500 | Basil Essential Oil    | 2        | 26.50 | 26.5  |
             | 3419 | RutaVaLa Essential Oil | 3        | 33.75 | 33.75 |
 
 
@@ -21,8 +21,8 @@ Feature: Shopping
         Examples:
             | shipping_method    | payment_method | donation |
             | Economy            | Credit Card    | Yes      |
-            | Expedited          | PayPal         | No       |
-            | Lehi, UT Will Call | ACH            | Yes      |
+            #| Expedited          | PayPal         | No       |
+            #| Lehi, UT Will Call | ACH            | Yes      |
 
 
 

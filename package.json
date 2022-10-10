@@ -4,6 +4,7 @@
   "description": "This project is meant to be a kind of template to start working with Cucumber and Cypress just cloning the project.",
   "main": "index.js",
   "scripts": {
+    "dashboard": "cypress run --record --key a4e452ff-0423-4552-96b6-a4b2757ffbbf",
     "runner": "cypress open --e2e --browser electron",
     "cypress:runner": "cypress open",
     "cypress:execution": "cypress run",
@@ -18,9 +19,13 @@
     "@badeball/cypress-cucumber-preprocessor": "^13.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.4",
     "cypress": "^10.8.0",
+    "cypress-dotenv": "^2.0.0",
     "cypress-xpath": "^2.0.1",
+    "dotenv": "^16.0.3",
     "esbuild": "^0.15.8",
-    "multiple-cucumber-html-reporter": "^2.0.0"
+    "multiple-cucumber-html-reporter": "^2.0.0",
+    "oracledb": "^5.5.0",
+    "kafkajs": "^2.2.0"
   },
   "dependencies": {
     "cypress-real-events": "^1.7.1"

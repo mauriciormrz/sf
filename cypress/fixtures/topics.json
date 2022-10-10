@@ -1,0 +1,36 @@
+{
+    "messages": [
+        {
+            "ylCustomerId": 5010,
+            "customerGuid": "597970d3-83a7-553b-9b15-9f9e1ac6f650",
+            "skavaCustomerId": null,
+            "ylCustomerTypeId": 1,
+            "referralId": "5168",
+            "sponsorId": "5168",
+            "enrollerId": "5168",
+            "phone": "7209408800",
+            "email": "yl@ylfamily.com",
+            "languageIso": "en",
+            "pin": "2828",
+            "autoshipMonths": 0,
+            "flagHoldBalance": false,
+            "flagHoldConduct": false,
+            "flagHoldFraud": false,
+            "flagSkavaAccount": true,
+            "firstName": "Chris and Vicki",
+            "middleName": null,
+            "lastName": "Opfer",
+            "dropDateUtc": "1899-12-30T07:00:00.000+0000",
+            "dateSignedUpUtc": "1995-12-30T07:00:00.000+0000",
+            "dateActivatedUtc": "1995-12-30T07:00:00.000+0000",
+            "hasDonationRoundUp": true,
+            "marketId": 1,
+            "rank": "Royal Crown Diamond",
+            "taxExempt": false,
+            "activityStatusId": 1,
+            "isActive": true,
+            "isGuestAccount": false,
+            "isReclassified": false
+        }
+    ]
+}

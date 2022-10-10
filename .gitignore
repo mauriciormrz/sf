@@ -8,6 +8,8 @@
 /cypress/screenshots/
 /cypress/videos/
 /cypress/cucumber-json/
+/cypress/fixtures/*.json
+/cypress/jsonlogs/
 # Node artifact files
 node_modules/
 dist/
