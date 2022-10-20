@@ -18,14 +18,15 @@
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^13.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.4",
-    "cypress": "^10.8.0",
+    "cypress": "^10.10.0",
     "cypress-dotenv": "^2.0.0",
     "cypress-xpath": "^2.0.1",
     "dotenv": "^16.0.3",
     "esbuild": "^0.15.8",
+    "kafkajs": "^2.2.0",
     "multiple-cucumber-html-reporter": "^2.0.0",
     "oracledb": "^5.5.0",
-    "kafkajs": "^2.2.0"
+    "node-xlsx": "^0.21.0"
   },
   "dependencies": {
     "cypress-real-events": "^1.7.1"

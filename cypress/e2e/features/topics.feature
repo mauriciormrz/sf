@@ -11,9 +11,9 @@ Feature: Topics Messages
         Then I should see the contract "<contract>"
 
         Examples:
-            | contract         | QueueTable          | recordid | field        |
-            | YLAccountUpdated | CustomerChangeQueue | 5010     | YLCustomerId |
-            #| YLAccountUpdated | CustomerChangeQueue | 3907     | YLCustomerId |
+            | contract         | QueueTable              | recordid  | field        |
+            | YLAccountUpdated | CustomerChangeQueue     | 5010      | YLCustomerId |
+            | OrderShipped     | OrdershippedChangeQueue | 212227009 | ShipmentId   |
 
 
 

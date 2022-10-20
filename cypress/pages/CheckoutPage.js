@@ -21,9 +21,9 @@ class CheckoutPage {
     }
 
     submitOrder() {
-        cy.pause();
+        //cy.pause();
         cy.checkIfElemExists(this.elements.brandPartnerStringCheckBox());
-        cy.pause();
+        //cy.pause();
         this.elements.submitOrderBtn().click();
     }
 

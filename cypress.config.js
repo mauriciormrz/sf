@@ -13,8 +13,12 @@ const DBManager = require('./cypress/helpers/db-manager');
 
 //Kafka Requirements
 //const { consumer } = require('./cypress/helpers/kafka-consumer');
-
 const consume = require('./cypress/helpers/kafka-consumer')
+
+//Excel requirements
+const xlsx = require("node-xlsx").default;
+const fs = require("fs"); // for file
+const path = require("path"); // for file path
 
 require('dotenv').config();
 console.clear();
@@ -25,6 +29,7 @@ module.exports = defineConfig({
   projectId: "7iv7xb",
   e2e: {
     async setupNodeEvents(on, config) {
+
       //Environment Variables Implementation
       config = dotenvPlugin(config);
 
@@ -48,22 +53,24 @@ module.exports = defineConfig({
         },
       });
 
-      /*--------------------------------------------------------*/
-      //consumer.connect();
-      //consumer
-      //	.on('ready', () => {
-      //		console.log('consumer ready...');
-      //		consumer.subscribe(['my-kafka-topic']);
-      //		consumer.consume();
-      //	}).on('data', data => {
-      //		console.log(`received message: ${data.value}`);
-      //	});
-      /*--------------------------------------------------------*/
+      //Excel implementation
+      on('task', {
+        parseXlsx({ filePath }) {
+          return new Promise((resolve, reject) => {
+            try {
+              const jsonData = xlsx.parse(fs.readFileSync(filePath));
+              resolve(jsonData);
+            } catch (e) {
+              reject(e);
+            }
+          });
+        },
+      });
 
       return config;
     },
     specPattern: "cypress/e2e/features/*.feature",
-    baseUrl: "https://ext5.youngliving.com",
+    baseUrl: "https://clone.youngliving.com",
     chromeWebSecurity: false,
     scrollBehavior: false,
     viewportWidth: 1280,

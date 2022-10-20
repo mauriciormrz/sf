@@ -24,7 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-
+Cypress.Commands.add("parseXlsx", (inputFile) => {
+    return cy.task("parseXlsx", { filePath: inputFile });
+});
 
 Cypress.Commands.add('checkIfElemExists', (elem) => {
     cy.get('body').then($body => {

@@ -5,7 +5,7 @@ Feature: Shopping
 
     Background:
         Given I am at the Login page
-        And I log in to the Storefront with user "1040"  and password "Password1"
+        And I log in to the Storefront with user "5010"  and password "Password1"
 
     Scenario Outline: Order Placed with "<shipping_method>" Shipping, "<payment_method>" Payment and Donation="<donation>"
         When I add the item to the shopping cart
