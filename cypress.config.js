@@ -2,40 +2,41 @@ const { defineConfig } = require("cypress");
 
 //Cucumber requirements
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
-const addCucumberPreprocessorPlugin = require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
-const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
+const addCucumberPreprocessorPlugin = require("@badeball/cypress-cucumber-preprocessor")
+  .addCucumberPreprocessorPlugin;
+const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild")
+  .createEsbuildPlugin;
 
 //Environment Variables Requirements
-const dotenvPlugin = require('cypress-dotenv');
+const dotenv = require("dotenv");
+dotenv.config();
+const dotenvPlugin = require("cypress-dotenv");
 
 //Oracle Requirements
-const DBManager = require('./cypress/helpers/db-manager');
+const DBManager = require("./cypress/helpers/db-manager");
 
 //Kafka Requirements
 //const { consumer } = require('./cypress/helpers/kafka-consumer');
-const consume = require('./cypress/helpers/kafka-consumer')
+const consume = require("./cypress/helpers/kafka-consumer");
 
 //Excel requirements
 const xlsx = require("node-xlsx").default;
 const fs = require("fs"); // for file
 const path = require("path"); // for file path
 
-require('dotenv').config();
 console.clear();
-console.log("------------------------------------------------------------------------------------------")
-
+console.log("------------------------------------------------------------------------------------------");
 
 module.exports = defineConfig({
   projectId: "7iv7xb",
   e2e: {
     async setupNodeEvents(on, config) {
-
       //Environment Variables Implementation
       config = dotenvPlugin(config);
 
       //Cucumbre implementation
       const bundler = createBundler({
-        plugins: [createEsbuildPlugin(config)],
+        plugins: [createEsbuildPlugin(config)]
       });
       on("file:preprocessor", bundler);
       await addCucumberPreprocessorPlugin(on, config);
@@ -46,15 +47,15 @@ module.exports = defineConfig({
       });
 
       //Oracle implementation
-      on('task', {
+      on("task", {
         sqlQuery: query => {
           //console.log(query);
           return DBManager.queryData(query);
-        },
+        }
       });
 
       //Excel implementation
-      on('task', {
+      on("task", {
         parseXlsx({ filePath }) {
           return new Promise((resolve, reject) => {
             try {
@@ -64,7 +65,7 @@ module.exports = defineConfig({
               reject(e);
             }
           });
-        },
+        }
       });
 
       return config;
@@ -78,14 +79,13 @@ module.exports = defineConfig({
     env: {
       username: "yleo",
       password: "I know what 2 do",
-      api_path: "/orchestrationservices/storefront/customers",
+      api_path: "/orchestrationservices/storefront/customers"
     },
     retries: {
       runMode: 2,
-      openMode: 0,
+      openMode: 0
     },
     video: true,
-    screenshotOnRunFailure: true,
-  },
+    screenshotOnRunFailure: true
+  }
 });
-

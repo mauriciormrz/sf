@@ -1,15 +1,24 @@
 const { Kafka, logLevel } = require("kafkajs");
 const { writeJSON, readJSON } = require("../helpers/utilities");
 
-//const brokers = [process.env.KAFKA_BROKER];
-const brokers = ["pkc-lgk0v.us-west1.gcp.confluent.cloud:9092"];
+const brokers = [process.env.KAFKA_BROKER];
 
 const fs = require("fs");
 
 const clientId = "cy-kafka";
-//onst topic = process.env.TOPIC_PREFIX + ".skava.internal.events.yl-customers";
-const topic = "clone" + ".skava.internal.events.yl-customers";
-//const topic = "clone" + ".skava.internal.events.yl-orders-shipped";
+
+const MSG_CUSTOMER = "YLAccountUpdated";
+const TOPIC_CUSTOMER = "skava.internal.events.yl-customers";
+
+const MSG_ORDER_PLACED = "OrderPlaced";
+const TOPIC_ORDER_PLACED = "orders.public.requests.orders";
+
+const MSG_ORDER_SHIPPED = "OrderShipped";
+const TOPIC_ORDER_SHIPPED = "skava.internal.events.yl-orders-shipped";
+
+
+//const topic = process.env.TOPIC_PREFIX + ".skava.internal.events.yl-customers";
+const topic = process.env.TOPIC_PREFIX + TOPIC_ORDER_SHIPPED;
 
 const kafka = new Kafka({
   clientId,
@@ -17,16 +26,12 @@ const kafka = new Kafka({
   logLevel: logLevel.NOTHING,
   ssl: {
     rejectUnauthorized: false,
-    //cert: fs.readFileSync(process.env.SSL_LOCATION, "utf-8"),
-    cert: fs.readFileSync("./cypress/fixtures/kafkacert.pem", "utf-8")
+    cert: fs.readFileSync(process.env.SSL_LOCATION, "utf-8"),
   },
   sasl: {
-    //mechanism: process.env.SASL_MECHANISM,
-    //username: process.env.SASL_USERNAME,
-    //password: process.env.SASL_PASSWORD,
-    mechanism: "PLAIN",
-    username: "SMJXDBRARWATY3E7",
-    password: "OoFuTeBJBoitrwl53HoKZtXal4Vnnku5Dsm0f7CVnl4cGZJrp87d+7Zz0dF8eC8o"
+    mechanism: process.env.SASL_MECHANISM,
+    username: process.env.SASL_USERNAME,
+    password: process.env.SASL_PASSWORD,
   }
 });
 
@@ -81,19 +86,19 @@ const consume = async () => {
 
 const getMessage = topic => {
 
-  if (topic.includes("skava.internal.events.yl-customers")) {
-    return "YLAccountUpdated";
+  if (topic.includes(TOPIC_CUSTOMER)) {
+    return MSG_CUSTOMER;
   }
 
-  if (topic.includes("orders.public.requests.orders")) {
-    return "OrderPlaced";
+  if (topic.includes(TOPIC_ORDER_PLACED)) {
+    return MSG_ORDER_PLACED;
   }
 
-  if (topic.includes("skava.internal.events.yl-orders-shipped")) {
-    return "OrderShipped";
+  if (topic.includes(TOPIC_ORDER_SHIPPED)) {
+    return MSG_ORDER_SHIPPED;
   }
 
-  return "YLAccountUpdated";
+  return MSG_CUSTOMER;
 };
 
 writeJSON([]);
