@@ -16,7 +16,7 @@ Feature: Sign In
     Examples:
       | user | password  | email                       |
       | 1040 | Password1 | ziaessoilsadmqa@yopmail.com |
-
+      | 5010 | Password1 | yl@ylfamily.com             |
 
 
   Scenario: Loggin with invalid credentials

@@ -1,4 +1,4 @@
-Feature: Topics Messages
+Feature: Legacy to Skava Topics Messages
 
     As Kafka producer,
     I want to check the messages passed through the topics,
@@ -15,5 +15,5 @@ Feature: Topics Messages
         Examples:
             | db     | contract                      | QueueTable             | ins_col      | ins_value | recordid     | value  |
             | legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 435879    | ylCustomerId | 435879 |
-            #| legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 436211    | ylCustomerId | 436211 |
-            #| legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 989711    | ylCustomerId | 989711 |
+            | legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 436211    | ylCustomerId | 436211 |
+            | legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 989711    | ylCustomerId | 989711 |

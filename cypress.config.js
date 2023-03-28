@@ -24,7 +24,6 @@ const path = require("path"); // for file path
 
 console.clear();
 console.log("------------------------------------------------------------------------------------------");
-//cy.writeFile(Cypress.env('JSON_LOCATION'), { "messages": [] });
 
 async function setupNodeEvents(on, config) {
 
@@ -41,12 +40,13 @@ async function setupNodeEvents(on, config) {
   //Environment Variables Implementation
   config = dotenvPlugin(config);
 
-  //Kafka implementation
-  consume()
-    .catch(err => {
-      console.error('error in consumer: ', err);
-    });
+  //Kafkajs implementation
+  //consume()
+  //  .catch(err => {
+  //    console.error('error in consumer: ', err);
+  //  });
 
+  //rdkafka implementation
   rdkafka_consume()
     .catch(err => {
       console.error('error in consumer: ', err);

@@ -1,4 +1,4 @@
-Feature: Topics Messages
+Feature: TLegacy to Skava Topics Messages
 
     As Kafka producer,
     I want to check the messages passed through the topics,

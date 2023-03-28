@@ -20,16 +20,16 @@ const {
   TOPIC_ORDER_PLACED_PROCESSED,
 } = require("./topics-messages");
 
-//async function run() {
 const run = async () => {
   var stream = Kafka.KafkaConsumer.createReadStream({
-    'group.id': 'librd-test2',
+    'group.id': 'rdkafka-consumer',
     'api.version.request': true,
     'bootstrap.servers': process.env.KAFKA_BROKER,
     'sasl.mechanism': process.env.SASL_MECHANISM,
     'sasl.password': process.env.SASL_PASSWORD,
     'sasl.username': process.env.SASL_USERNAME,
     'security.protocol': "SASL_SSL",
+    'auto.offset.reset': "latest",
     'ssl.ca.location': process.env.SSL_LOCATION
   }, {}, {
     topics: [
@@ -68,3 +68,12 @@ const run = async () => {
 };
 
 module.exports = run;
+
+
+// brew install librdkafka
+// brew link python
+// xcode-select --install
+// https://github.com/Blizzard/node-rdkafka/blob/master/README.md
+// https://github.com/Blizzard/node-rdkafka/blob/master/examples/producer.md
+// https://stackoverflow.com/questions/72854644/nodejs-kafka-producer-not-able-to-send-messages
+// https://dsinecos.github.io/blog/Learning-Kafka-Writing-a-simple-producer-in-Nodejs
