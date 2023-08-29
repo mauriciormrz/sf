@@ -17,12 +17,12 @@ const {
   TOPIC_YL_ACCOUNT_SUBSCRIPTION,
   TOPIC_YL_ACCOUNT_UPDATED,
   TOPIC_YL_CUSTOMER_ADDRESS_UPDATED,
-  TOPIC_ORDER_PLACED_PROCESSED,
+  
 } = require("./topics-messages");
 
 const run = async () => {
   var stream = Kafka.KafkaConsumer.createReadStream({
-    'group.id': 'rdkafka-consumer',
+    'group.id': 'rdkafka-legacy-consumer',
     'api.version.request': true,
     'bootstrap.servers': process.env.KAFKA_BROKER,
     'sasl.mechanism': process.env.SASL_MECHANISM,
@@ -38,7 +38,7 @@ const run = async () => {
       TOPIC_SKU_PRICE_CHANGED,
       TOPIC_SKU_UPDATED,
       TOPIC_YL_ACCOUNT_CREDIT_BALANCE_UPDATED,
-      TOPIC_YL_ACCOUNT_CREDIT_LEDGER,
+      //TOPIC_YL_ACCOUNT_CREDIT_LEDGER,
       TOPIC_YL_ACCOUNT_LOYALTY_LEDGER,
       TOPIC_YL_ACCOUNT_PAYMENT_ACH,
       TOPIC_YL_ACCOUNT_PAYMENT_CARD,
@@ -47,7 +47,6 @@ const run = async () => {
       TOPIC_YL_ACCOUNT_SUBSCRIPTION,
       TOPIC_YL_ACCOUNT_UPDATED,
       TOPIC_YL_CUSTOMER_ADDRESS_UPDATED,
-      TOPIC_ORDER_PLACED_PROCESSED
     ],
     waitInterval: 0,
     objectMode: true

@@ -42,10 +42,12 @@ const logMessage = (topic, message) => {
     key: message.key.toString(),
     timestamp: message.timestamp,
     topic: topic,
+    //message: message.value.toString(),
   })
 
 
-  const str = message.value.toString().replaceAll("[{", "[],").replaceAll("{", "").replaceAll("}", "").replaceAll("\"", "");
+  //const str = message.value.toString().replaceAll("[{", "[],").replaceAll("{", "").replaceAll("}", "").replaceAll("\"", "");
+  const str = message.value.toString().replaceAll("[{", "[],").replaceAll("{", "").replaceAll("}", "").replaceAll("\\", "").replaceAll("\"", "");
   const words = str.split(',');
 
   const messy = new Map();

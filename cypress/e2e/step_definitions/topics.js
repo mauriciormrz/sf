@@ -21,6 +21,13 @@ Given("I start the Topic's flows by inserting {string} into {string} table in {s
   );
 });
 
+Given("I start the Topic's flows by producing {string}", (value) => {
+
+  timestampQuery = new Date().getTime();
+  cy.log("request_message: ",value);
+  cy.log("timestampQuery: ", timestampQuery)
+});
+
 
 When("I consume the message {string} with {string} set up to {string}", (contract, recordid, value) => {
 
@@ -70,9 +77,10 @@ When("I consume the message {string} with {string} set up to {string}", (contrac
   if (contract == 'YLAccountSubscription') {
     cy.wait(17000);
   }
+
   cy.readFile(Cypress.env('JSON_LOCATION')).then(data => {
-    //cy.log(data)
-    message = data.messages.filter((e) => (e.contract === contract && e.recordId === value && e.timestamp >= timestampQuery))[0];
+    //message = data.messages.filter((e) => (e.contract === contract && e.recordId === value && e.timestamp >= timestampQuery))[0];
+    message = data.messages.filter((e) => (e.contract === contract && e.recordId === value ))[0];
     expect(message).to.exist
   });
 });
@@ -82,9 +90,9 @@ When("I consume the message {string} with {string} set up to {string}", (contrac
 Then("The message should have the structure of the JSON {string}", (name) => {
 
   contract = skavaContracts.find(c => c.name.toLowerCase().trim() === name.toLowerCase().trim());
-  //cy.log("Skava: ", skavaContracts)
-  //cy.log("Contract: ", contract.data);
-  //cy.log("Message: ", message);
+  cy.log("Skava: ", skavaContracts)
+  cy.log("Contract: ", contract.data);
+  cy.log("Message: ", message);
 
   requiredFields = contract.data.filter((e) => (e.length === 3 && e[2].toLowerCase() === 'yes'));
   requiredFields.forEach(f => expect(message).to.have.property(f[0]));

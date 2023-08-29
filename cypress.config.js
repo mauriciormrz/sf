@@ -14,7 +14,9 @@ const DBManager = require("./cypress/helpers/db-manager");
 
 //Kafka Requirements
 const consume = require("./cypress/helpers/kafkajs-consumer");
-const rdkafka_consume = require("./cypress/helpers/rdkafka-consumer");
+const rdkafka_legacy_consumer = require("./cypress/helpers/rdkafka-legacy-consumer");
+
+const rdkafka_skava_consumer = require("./cypress/helpers/rdkafka-skava-consumer");
 
 //Excel requirements
 const xlsx = require("node-xlsx").default;
@@ -47,11 +49,16 @@ async function setupNodeEvents(on, config) {
   //  });
 
   //rdkafka implementation
-  rdkafka_consume()
+  rdkafka_legacy_consumer()
     .catch(err => {
-      console.error('error in consumer: ', err);
+      console.error('error in legacy consumer: ', err);
     })
 
+  rdkafka_skava_consumer()
+    .catch(err => {
+      console.error('error in skava consumer: ', err);
+    })
+//
   //Oracle implementation
   on('task', {
     sqlQuery: ({ query, db }) => {

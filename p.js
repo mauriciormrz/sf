@@ -24,16 +24,16 @@ var producer = new Kafka.Producer({
 
 var topicName = 'clone.orders.public.requests.orders';
 
-//logging debug messages, if debug is enabled
-producer.on('event.log', function (log) {
-  console.log(log);
-});
+////logging debug messages, if debug is enabled
+//producer.on('event.log', function (log) {
+//  console.log(log);
+//});
 
-//logging all errors
-producer.on('event.error', function (err) {
-  console.error('Error from producer');
-  console.error(err);
-});
+////logging all errors
+//producer.on('event.error', function (err) {
+//  console.error('Error from producer');
+//  console.error(err);
+//});
 
 
 producer.on('delivery-report', function (err, report) {
@@ -44,7 +44,7 @@ producer.on('delivery-report', function (err, report) {
 producer.on('ready', function (arg) {
   console.log('producer ready');
 
-  const value = Buffer.from(fs.readFileSync('./cypress/fixtures/Payload.json', "utf8"));
+  const value = Buffer.from(fs.readFileSync('./cypress/fixtures/payloads/OrderPlaced.json', "utf8"));
   const key = "";
   const partition = -1;
   const headers = [
@@ -53,7 +53,6 @@ producer.on('ready', function (arg) {
     }
   ]
 
-  //const headers = JSON.parse(fs.readFileSync('./cypress/fixtures/Headers.json', "utf8"));
   producer.produce(topicName, partition, value, key, Date.now(), "", headers);
 
   const pollLoop = setInterval(function () {

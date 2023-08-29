@@ -1,29 +1,40 @@
 const Kafka = require('node-rdkafka');
 const fs = require("fs");
 
+//var producer = new Kafka.Producer({
+//  'group.id': 'rdkafka-producer',
+//  'api.version.request': true,
+//  'bootstrap.servers': process.env.KAFKA_BROKER,
+//  'sasl.mechanism': process.env.SASL_MECHANISM,
+//  'sasl.password': process.env.SASL_PASSWORD,
+//  'sasl.username': process.env.SASL_USERNAME,
+//  'security.protocol': "SASL_SSL",
+//  'ssl.ca.location': process.env.SSL_LOCATION,
+//  'dr_cb': true
+//});
 
 var producer = new Kafka.Producer({
-    'group.id': 'rdkafka-producer',
-    'api.version.request': true,
-    'bootstrap.servers': process.env.KAFKA_BROKER,
-    'sasl.mechanism': process.env.SASL_MECHANISM,
-    'sasl.password':  process.env.SASL_PASSWORD,
-    'sasl.username': process.env.SASL_USERNAME,
-    'security.protocol': "SASL_SSL",
-    'ssl.ca.location':  process.env.SSL_LOCATION,
-    'dr_cb': true
-  });
+  'group.id': 'librd-test',
+  'api.version.request': true,
+  'bootstrap.servers': "pkc-lgk0v.us-west1.gcp.confluent.cloud:9092",
+  'sasl.mechanism': "PLAIN",
+  'sasl.password': "OoFuTeBJBoitrwl53HoKZtXal4Vnnku5Dsm0f7CVnl4cGZJrp87d+7Zz0dF8eC8o",
+  'sasl.username': "SMJXDBRARWATY3E7",
+  'security.protocol': "SASL_SSL",
+  'ssl.ca.location': "./cypress/fixtures/kafkacert.pem",
+  'dr_cb': true
+});
 
 var topicName = 'clone.orders.public.requests.orders';
 
-producer.on('event.log', function (log) {
-  console.log(log);
-});
-
-producer.on('event.error', function (err) {
-  console.error('Error from producer');
-  console.error(err);
-});
+//producer.on('event.log', function (log) {
+//  console.log(log);
+//});
+//
+//producer.on('event.error', function (err) {
+//  console.error('Error from producer');
+//  console.error(err);
+//});
 
 producer.on('delivery-report', function (err, report) {
   console.log('deliver: ' + JSON.stringify(report.topic));

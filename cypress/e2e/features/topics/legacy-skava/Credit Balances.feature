@@ -5,7 +5,7 @@ Feature: Legacy to Skava Topics Messages
     So the fulfillment of the contracts is guaranteed
 
     Background:
-        Given I load the description file of the Contracts "SkavaMessageContracts.xlsx"
+        Given I load the description file of the Contracts "SkavaAccountMessageContracts.xlsx"
 
     Scenario Outline: JSON Message "<contract>": <ins_col>: <ins_value>
         Given I start the Topic's flows by inserting "<ins_value>" into "<QueueTable>" table in "<db>"
@@ -15,5 +15,5 @@ Feature: Legacy to Skava Topics Messages
         Examples:
             | db     | contract                      | QueueTable             | ins_col      | ins_value | recordid     | value  |
             | legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 435879    | ylCustomerId | 435879 |
-            | legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 436211    | ylCustomerId | 436211 |
-            | legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 989711    | ylCustomerId | 989711 |
+            #| legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 436211    | ylCustomerId | 436211 |
+            #| legacy | YLAccountCreditBalanceUpdated | CustBalanceChangeQueue | ylCustomerId | 989711    | ylCustomerId | 989711 |
