@@ -13,6 +13,7 @@ Given("I start the Topic's flows by inserting {string} into {string} table in {s
 
   timestampQuery = new Date().getTime();
   cy.writeFile(Cypress.env('JSON_LOCATION'), { "messages": [] });
+  
   const SQL_INSERT_RECORDID_INTO_QUEUETABLE = 'INSERT INTO ' + queueTable + ' (recordid) VALUES (' + value + ')';
   cy.task('sqlQuery', { query: SQL_INSERT_RECORDID_INTO_QUEUETABLE, db }).then(
     resolvedValue => {
@@ -21,11 +22,13 @@ Given("I start the Topic's flows by inserting {string} into {string} table in {s
   );
 });
 
-Given("I start the Topic's flows by producing {string}", (value) => {
+Given("I start the kafka-topic {string} flow by producing {string}", (topic, request_message) => {
 
   timestampQuery = new Date().getTime();
-  cy.log("request_message: ",value);
-  cy.log("timestampQuery: ", timestampQuery)
+  cy.writeFile(Cypress.env('JSON_LOCATION'), { "messages": [] });
+  //cy.log("request_message: ", request_message);
+  //cy.log("timestampQuery: ", timestampQuery);
+  cy.task('kafkaMessage', { topic, payload: request_message})
 });
 
 
@@ -78,9 +81,13 @@ When("I consume the message {string} with {string} set up to {string}", (contrac
     cy.wait(17000);
   }
 
+  if ( contract == 'OrderPlacedProcessed') {
+    cy.wait(7000);
+  }
+
   cy.readFile(Cypress.env('JSON_LOCATION')).then(data => {
-    //message = data.messages.filter((e) => (e.contract === contract && e.recordId === value && e.timestamp >= timestampQuery))[0];
-    message = data.messages.filter((e) => (e.contract === contract && e.recordId === value ))[0];
+    message = data.messages.filter((e) => (e.contract === contract && e.recordId === value && e.timestamp >= timestampQuery))[0];
+    //message = data.messages.filter((e) => (e.contract === contract && e.recordId === value))[0];
     expect(message).to.exist
   });
 });
@@ -90,9 +97,9 @@ When("I consume the message {string} with {string} set up to {string}", (contrac
 Then("The message should have the structure of the JSON {string}", (name) => {
 
   contract = skavaContracts.find(c => c.name.toLowerCase().trim() === name.toLowerCase().trim());
-  cy.log("Skava: ", skavaContracts)
-  cy.log("Contract: ", contract.data);
-  cy.log("Message: ", message);
+  //cy.log("Skava: ", skavaContracts)
+  //cy.log("Contract: ", contract.data);
+  //cy.log("Message: ", message);
 
   requiredFields = contract.data.filter((e) => (e.length === 3 && e[2].toLowerCase() === 'yes'));
   requiredFields.forEach(f => expect(message).to.have.property(f[0]));

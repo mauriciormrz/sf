@@ -13,16 +13,13 @@ const dotenvPlugin = require("cypress-dotenv");
 const DBManager = require("./cypress/helpers/db-manager");
 
 //Kafka Requirements
-const consume = require("./cypress/helpers/kafkajs-consumer");
-const rdkafka_legacy_consumer = require("./cypress/helpers/rdkafka-legacy-consumer");
-
-const rdkafka_skava_consumer = require("./cypress/helpers/rdkafka-skava-consumer");
+const kafkaConsumer = require("./cypress/helpers/rdkafka-skava-consumer");
+const kafkaProducer = require("./cypress/helpers/rdkafka-producer");
 
 //Excel requirements
 const xlsx = require("node-xlsx").default;
 const fs = require("fs"); // for file
 const path = require("path"); // for file path
-
 
 console.clear();
 console.log("------------------------------------------------------------------------------------------");
@@ -42,23 +39,20 @@ async function setupNodeEvents(on, config) {
   //Environment Variables Implementation
   config = dotenvPlugin(config);
 
-  //Kafkajs implementation
-  //consume()
-  //  .catch(err => {
-  //    console.error('error in consumer: ', err);
-  //  });
-
-  //rdkafka implementation
-  rdkafka_legacy_consumer()
+  //rdkafka consumer implementation
+  kafkaConsumer()
     .catch(err => {
-      console.error('error in legacy consumer: ', err);
+      console.error('error in kafka consumer: ', err);
     })
 
-  rdkafka_skava_consumer()
-    .catch(err => {
-      console.error('error in skava consumer: ', err);
-    })
-//
+  //rdkafka producer implementation
+  on('task', {
+    kafkaMessage: ({ topic, payload }) => {
+      return kafkaProducer.sendMessage(topic, payload);
+    }
+  });
+
+  //
   //Oracle implementation
   on('task', {
     sqlQuery: ({ query, db }) => {

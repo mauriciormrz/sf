@@ -36,7 +36,6 @@
     "cypress-xpath": "^2.0.1",
     "dotenv": "^16.0.3",
     "esbuild": "^0.16.4",
-    "kafkajs": "^2.2.0",
     "multiple-cucumber-html-reporter": "^3.0.1",
     "node-xlsx": "^0.21.0",
     "oracledb": "^5.5.0"
