@@ -1,0 +1,54 @@
+{
+  "orderItems": [
+    {
+      "partNumber": "3500",
+      "quantity": 2,
+      "salesPriceAmount": 69.74,
+      "taxableAmount": 69.74,
+      "personalVolume": 53,
+      "wareHouseId": "1",
+      "giftItem": false,
+      "donationItem": false
+    }
+  ],
+  "shippingAmount": 0,
+  "shippingTax": 0,
+  "subTotal": 69.74,
+  "discounts": [
+    {
+      "amount": 16.74
+    }
+  ],
+  "discountsTotal": 16.74,
+  "salesTax": [
+    {
+      "amount": 0
+    }
+  ],
+  "salesTaxTotal": 5.75,
+  "total": 58.75,
+  "originalOrderId": "161593115622863",
+  "originalYLOrderId": 149872421,
+  "returnId": "681217499190485",
+  "referenceId": "OrderReturnProcessed~360818767178527~160818767178527",
+  "orderDateTime": "2021-01-07T17:13:44.252",
+  "payments": [
+    {
+      "isoCurrencyCode": "USD",
+      "isoCountryCode": "US",
+      "amount": 58.75,
+      "referenceId": "REFID_CREDITCARD_1040426_TID_717456",
+      "walletId": "e8fafca0-8c88-4b52-93a9-28e9057ccea0",
+      "paymentTransactionId": "9c36c447-a76d-4111-bf95-303ad1ccbafd",
+      "paymentMethodType": "CreditCard",
+      "ylpaymentMethodId": "d8d1b0a4-9e9d-4c5e-b357-8d2cdb1cd634"
+    }
+  ],
+  "returnFees": [
+    {
+      "restockingFee": 1,
+      "handlingFee": 2,
+      "customFee": 3
+    }
+  ]
+}

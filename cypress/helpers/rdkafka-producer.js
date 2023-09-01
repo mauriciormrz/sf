@@ -1,14 +1,6 @@
 const Kafka = require('node-rdkafka');
 const fs = require("fs");
 
-//producer.on('event.log', function (log) {
-//  console.log(log);
-//});
-//
-//producer.on('event.error', function (err) {
-//  console.error('Error from producer');
-//  console.error(err);
-//});
 
 const sendMessage = async (topic, payload) => {
   try {
@@ -26,7 +18,7 @@ const sendMessage = async (topic, payload) => {
     });
 
     //const request_topic = 'clone.orders.public.requests.orders';
-    const request_topic = process.env.TOPIC_PREFIX + "orders.public.requests." + topic;
+    const request_topic = process.env.TOPIC_PREFIX + topic + ".public.requests." + topic;
 
     producer.on('delivery-report', function (err, report) {
       console.log('deliver: ' + JSON.stringify(report.topic));
@@ -60,7 +52,7 @@ const sendMessage = async (topic, payload) => {
     producer.connect();
     return null;
   } catch (err) {
-    console("Error==>" + err);
+    console("Error ==>" + err);
     return err
   }
 

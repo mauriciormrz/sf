@@ -30,14 +30,14 @@ const queryData = async (query, db) => {
     conn.commit();
     return result;
   } catch (err) {
-    console.log("Error==>" + err)
+    console.log("Erro ==>" + err)
     return err
   } finally {
     if (conn) {
       try {
         conn.close();
       } catch (err) {
-        console("Error==>" + err);
+        console("Error ==>" + err);
       }
     }
   }

@@ -13,7 +13,7 @@ const dotenvPlugin = require("cypress-dotenv");
 const DBManager = require("./cypress/helpers/db-manager");
 
 //Kafka Requirements
-const kafkaConsumer = require("./cypress/helpers/rdkafka-skava-consumer");
+const kafkaConsumer = require("./cypress/helpers/rdkafka-consumer");
 const kafkaProducer = require("./cypress/helpers/rdkafka-producer");
 
 //Excel requirements

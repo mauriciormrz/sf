@@ -1,0 +1,95 @@
+{
+  "orderItems": [
+    {
+      "partNumber": "5241",
+      "quantity": 1,
+      "salesPriceAmount": 1,
+      "taxableAmount": 0,
+      "personalVolume": 0,
+      "salesTaxes": [
+        {
+          "amount": 0
+        }
+      ],
+      "discounts": [],
+      "taxRate": 0,
+      "discountedPriceAmountStr": "1.00",
+      "pvAssitItem": false,
+      "giftItem": false,
+      "donationItem": true
+    },
+    {
+      "partNumber": "5203",
+      "quantity": 1,
+      "salesPriceAmount": 5.92,
+      "taxableAmount": 5.92,
+      "personalVolume": 4.5,
+      "salesTaxes": [
+        {
+          "amount": 0.52
+        }
+      ],
+      "discounts": [
+        {
+          "description": "Subscription 24% offer",
+          "amount": 1.42
+        }
+      ],
+      "paymentMethodType": "CreditCard",
+      "taxRate": 0.08875,
+      "discountedPriceAmountStr": "4.50",
+      "pvAssitItem": false,
+      "giftItem": false,
+      "donationItem": false
+    }
+  ],
+  "shippingAmount": 9.99,
+  "shippingTax": 0.89,
+  "subTotal": 6.92,
+  "discountsTotal": 1.42,
+  "salesTaxTotal": 0.52,
+  "total": 16.9,
+  "payments": [
+    {
+      "isoCurrencyCode": "USD",
+      "isoCountryCode": "US",
+      "amount": 16.9,
+      "referenceId": "REFID_CREDITCARD_4342857_TID_4242986",
+      "walletId": "bcc3f4db-b375-42d7-8f13-bad22cd59257",
+      "paymentTransactionId": "0a155c17-337a-4c49-8604-c42a2aa9bb64",
+      "paymentMethodType": "CreditCard",
+      "ylpaymentMethodId": "66111c17-93ff-4bea-a623-9b7cc2a3298f"
+    }
+  ],
+  "orderId": "168376676472903",
+  "orderSource": "WEB_Skava",
+  "orderDateTime": "2023-05-11T00:59:24.728",
+  "commissionDate": "2023-05-11T00:59:24.728",
+  "isoCurrencyCode": "USD",
+  "shipping": {
+    "shippingMethodId": "140",
+    "recipient": "Mauricio Test Ramirez",
+    "address": {
+      "line1": "1411 6th Ave",
+      "line2": "",
+      "city": "New York",
+      "stateProvince": "NY",
+      "postalCode": "10019",
+      "country": "US"
+    }
+  },
+  "donationAmount": 1,
+  "donationProgramId": 1,
+  "appliedUserPromotions": "[]",
+  "isException": false,
+  "agreement": {
+    "version": "null",
+    "language": "null",
+    "url": "null"
+  },
+  "checkedBrandPartnerAgreement": true,
+  "checkoutAsBrandPartner": true,
+  "customerTaxType": "2",
+  "skavaCustomerId": "33308753",
+  "ylcustomerId": 5010
+}
