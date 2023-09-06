@@ -1,54 +1,48 @@
 {
   "orderItems": [
     {
-      "partNumber": "3500",
-      "quantity": 2,
-      "salesPriceAmount": 69.74,
-      "taxableAmount": 69.74,
-      "personalVolume": 53,
-      "wareHouseId": "1",
+      "partNumber": "5203",
+      "quantity": 1,
+      "salesPriceAmount": 5.92,
+      "taxableAmount": 5.92,
+      "personalVolume": 4.5,
+      "discountedPriceAmountStr": "-4.50",
+      "donationItem": false,
       "giftItem": false,
-      "donationItem": false
+      "pvAssitItem": false
     }
   ],
   "shippingAmount": 0,
   "shippingTax": 0,
-  "subTotal": 69.74,
+  "subTotal": 5.92,
   "discounts": [
     {
-      "amount": 16.74
+      "amount": 1.42
     }
   ],
-  "discountsTotal": 16.74,
+  "discountsTotal": 1.42,
   "salesTax": [
     {
-      "amount": 0
+      "amount": 0.53
     }
   ],
-  "salesTaxTotal": 5.75,
-  "total": 58.75,
-  "originalOrderId": "161593115622863",
-  "originalYLOrderId": 149872421,
-  "returnId": "681217499190485",
-  "referenceId": "OrderReturnProcessed~360818767178527~160818767178527",
-  "orderDateTime": "2021-01-07T17:13:44.252",
+  "salesTaxTotal": 0.53,
+  "total": 5.03,
   "payments": [
     {
       "isoCurrencyCode": "USD",
       "isoCountryCode": "US",
-      "amount": 58.75,
-      "referenceId": "REFID_CREDITCARD_1040426_TID_717456",
-      "walletId": "e8fafca0-8c88-4b52-93a9-28e9057ccea0",
-      "paymentTransactionId": "9c36c447-a76d-4111-bf95-303ad1ccbafd",
-      "paymentMethodType": "CreditCard",
-      "ylpaymentMethodId": "d8d1b0a4-9e9d-4c5e-b357-8d2cdb1cd634"
+      "amount": 5.03,
+      "referenceId": "REFID_STORECREDIT_4358064_TID_null",
+      "walletId": "289daa28-7038-4bb6-b3aa-8a4c9f8ea2ad",
+      "paymentMethodType": "CashCredit",
+      "isCashCredit": true,
+      "ylpaymentMethodId": ""
     }
   ],
-  "returnFees": [
-    {
-      "restockingFee": 1,
-      "handlingFee": 2,
-      "customFee": 3
-    }
-  ]
+  "originalOrderId": "169385981916562",
+  "originalYLOrderId": 197159796,
+  "returnId": "169385994937456",
+  "referenceId": "OrderReturnProcessed~169385981916562~169385994937456",
+  "orderDateTime": "2023-09-04T20:39:09.356"
 }

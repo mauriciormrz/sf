@@ -1,11 +1,13 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { isNull } from "lodash";
 
 
 Given("I load the description file of the Contracts {string}", (file) => {
 
   cy.parseXlsx("./cypress/fixtures/" + file).then(data => {
     skavaContracts = data;
-  });
+    expect(skavaContracts).to.exist
+  });  
 });
 
 
@@ -22,13 +24,19 @@ Given("I start the Topic's flows by inserting {string} into {string} table in {s
   );
 });
 
+
 Given("I start the kafka-topic {string} flow by producing {string}", (topic, request_message) => {
 
   timestampQuery = new Date().getTime();
   cy.writeFile(Cypress.env('JSON_LOCATION'), { "messages": [] });
   //cy.log("request_message: ", request_message);
   //cy.log("timestampQuery: ", timestampQuery);
-  cy.task('kafkaMessage', { topic, payload: request_message})
+  cy.task('kafkaMessage', { topic, payload: request_message}).then(
+    resolvedValue => {
+      expect(resolvedValue).equal(null);
+      //cy.log(resolvedValue)
+    }
+  )
 });
 
 
@@ -87,7 +95,6 @@ When("I consume the message {string} with {string} set up to {string}", (contrac
 
   cy.readFile(Cypress.env('JSON_LOCATION')).then(data => {
     message = data.messages.filter((e) => (e.contract === contract && e.recordId === value && e.timestamp >= timestampQuery))[0];
-    //message = data.messages.filter((e) => (e.contract === contract && e.recordId === value))[0];
     expect(message).to.exist
   });
 });

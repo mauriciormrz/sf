@@ -20,10 +20,6 @@ const sendMessage = async (topic, payload) => {
     //const request_topic = 'clone.orders.public.requests.orders';
     const request_topic = process.env.TOPIC_PREFIX + topic + ".public.requests." + topic;
 
-    producer.on('delivery-report', function (err, report) {
-      console.log('deliver: ' + JSON.stringify(report.topic));
-    });
-
     producer.on('ready', function (arg) {
       console.log('producer ready');
 
@@ -32,7 +28,7 @@ const sendMessage = async (topic, payload) => {
       const partition = -1;
       const headers = [
         {
-          "Container:Manifest:contents_type": "SkavaUs.OrderPlaced"
+          "Container:Manifest:contents_type": "SkavaUs." + payload
         }
       ]
 
@@ -49,13 +45,16 @@ const sendMessage = async (topic, payload) => {
       console.log('producer disconnected');
     });
 
+    producer.on('delivery-report', function (err, report) {
+      console.log('deliver: ' + JSON.stringify(report.topic));
+    });
+
     producer.connect();
     return null;
   } catch (err) {
     console("Error ==>" + err);
     return err
   }
-
 
 }
 

@@ -58,7 +58,7 @@ const logMessage = (topic, message) => {
   });
 
   const map = new Map([...messy].sort());
-  //console.log(map);
+  //console.log("map: ",map);
   const obj = Object.fromEntries(map);
   let jsonString = JSON.stringify(obj);
   jsonString = jsonString.replaceAll("{", "").replaceAll("}", "")
