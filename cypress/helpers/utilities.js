@@ -46,23 +46,19 @@ const logMessage = (topic, message) => {
   })
 
 
-  //const str = message.value.toString().replaceAll("[{", "[],").replaceAll("{", "").replaceAll("}", "").replaceAll("\"", "");
   const str = message.value.toString().replaceAll("[{", "[],").replaceAll("{", "").replaceAll("}", "").replaceAll("\\", "").replaceAll("\"", "");
   const words = str.split(',');
 
   const messy = new Map();
   words.forEach((line) => {
-    //console.log("line: ", line);
     const field = line.split(":");
     messy.set(field[0], field[1]);
   });
 
   const map = new Map([...messy].sort());
-  //console.log("map: ",map);
   const obj = Object.fromEntries(map);
   let jsonString = JSON.stringify(obj);
   jsonString = jsonString.replaceAll("{", "").replaceAll("}", "")
-  //console.log(jsonString);
 
   try {
     const { messages } = readJSON();

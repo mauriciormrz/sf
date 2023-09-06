@@ -84,6 +84,7 @@ module.exports = defineConfig({
     specPattern: [
       "cypress/e2e/features/storefront/*.feature",
       "cypress/e2e/features/topics/L2S/*.feature",
+      "cypress/e2e/features/topics/S2L/*.feature",
       "cypress/e2e/features/topics/legacy-skava/*.feature",
       "cypress/e2e/features/topics/skava-legacy/*.feature",
     ],

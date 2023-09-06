@@ -111,9 +111,9 @@ const getMessageInfo = (topic, map) => {
       return { contract: MSG_ORDER_PLACED_PROCESSED, recordid: map.get('YlCustomerId') };
     } else {
       if (map.get('ReferenceId').includes("OrderReplacedProcessed", 0)) {
-        return { contract: MSG_ORDER_REPLACED_PROCESSED, recordid: map.get('YlCustomerId') };
+        return { contract: MSG_ORDER_REPLACED_PROCESSED, recordid: map.get('YLOrderId') };
       } else {
-        return { contract: MSG_ORDER_RETURNED_PROCESSED, recordid: map.get('YlCustomerId') };
+        return { contract: MSG_ORDER_RETURNED_PROCESSED, recordid: map.get('YLOrderId') };
       }
     }
   }
