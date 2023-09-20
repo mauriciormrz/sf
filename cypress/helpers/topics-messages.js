@@ -22,7 +22,6 @@ const TOPIC_YL_ACCOUNT_LOYALTY_LEDGER = process.env.TOPIC_PREFIX + "skava.intern
 const MSG_YL_ACCOUNT_PAYMENT_ACH = "YLAccountPaymentACH";
 const TOPIC_YL_ACCOUNT_PAYMENT_ACH = process.env.TOPIC_PREFIX + "skava.internal.events.yl-payment-ach";
 
-
 const MSG_YL_ACCOUNT_PAYMENT_CARD = "YLAccountPaymentCard";
 const TOPIC_YL_ACCOUNT_PAYMENT_CARD = process.env.TOPIC_PREFIX + "skava.internal.events.yl-payment-credit-cards";
 
@@ -40,6 +39,11 @@ const TOPIC_YL_ACCOUNT_UPDATED = process.env.TOPIC_PREFIX + "skava.internal.even
 
 const MSG_YL_CUSTOMER_ADDRESS_UPDATED = "YLCustomerAddressUpdated";
 const TOPIC_YL_CUSTOMER_ADDRESS_UPDATED = process.env.TOPIC_PREFIX + "skava.internal.events.yl-customer-addresses";
+
+const TOPIC_ACCOUNTS = process.env.TOPIC_PREFIX + "skava.internal.replies.customers";
+const MSG_SKAVA_ACCOUNT = "SkavaAccount";
+//const MSG_SKAVA_ACCOUNT_PROCESSED = "SkavaAccountProcessed";
+//const MSG_SKAVA_ACCOUNT_CREATED = "SkavaAccountCreated";
 
 const TOPIC_ORDERS_PROCESSED = process.env.TOPIC_PREFIX + "skava.internal.replies.orders";
 const MSG_ORDER_PLACED_PROCESSED = "OrderPlacedProcessed";
@@ -105,8 +109,11 @@ const getMessageInfo = (topic, map) => {
     return { contract: MSG_YL_CUSTOMER_ADDRESS_UPDATED, recordid: map.get('ylCustomerId') };
   }
 
-  if (topic.includes(TOPIC_ORDERS_PROCESSED)) {
+  if (topic.includes(TOPIC_ACCOUNTS)) {
+    return { contract: MSG_SKAVA_ACCOUNT, recordid: map.get('YLCustomerId') };
+  }
 
+  if (topic.includes(TOPIC_ORDERS_PROCESSED)) {
     if (map.get('ReferenceId') === undefined) {
       return { contract: MSG_ORDER_PLACED_PROCESSED, recordid: map.get('YlCustomerId') };
     } else {
@@ -139,5 +146,6 @@ module.exports = {
   TOPIC_YL_ACCOUNT_SUBSCRIPTION,
   TOPIC_YL_ACCOUNT_UPDATED,
   TOPIC_YL_CUSTOMER_ADDRESS_UPDATED,
+  TOPIC_ACCOUNTS,
   TOPIC_ORDERS_PROCESSED,
 }

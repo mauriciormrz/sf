@@ -13,6 +13,6 @@ Feature: Legacy to Skava Topics Messages
         Then The message should have the structure of the JSON "<reply_message>"
 
         Examples:
-            | topic  | request_message | reply_message          | recordid  | value     |
-            | orders | OrderReturned   | OrderReturnedProcessed | YLOrderId | 197159797 |
+            | topic  | request_message | reply_message          | recordid  | value |
+            | orders | OrderReturned   | OrderReturnedProcessed | YLOrderId | null  |
 

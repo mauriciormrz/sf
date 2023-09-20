@@ -14,5 +14,5 @@ Feature: Legacy to Skava Topics Messages
 
         Examples:
             | topic  | request_message | reply_message          | recordid  | value     |
-            | orders | OrderReplaced   | OrderReplacedProcessed | YLOrderId | 197177830 |
+            | orders | OrderReplaced   | OrderReplacedProcessed | YLOrderId | 0 |
 

@@ -43,6 +43,7 @@ const logMessage = (topic, message) => {
     timestamp: message.timestamp,
     topic: topic,
     //message: message.value.toString(),
+    headers: message.headers.toString(),
   })
 
 

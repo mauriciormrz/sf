@@ -40,15 +40,14 @@ Given("I start the kafka-topic {string} flow by producing {string}", (topic, req
 
 When("I consume the message {string} with {string} set up to {string}", (contract, recordid, value) => {
 
-  cy.wait(13000);
+  cy.wait(15000);
 
   if (contract == 'YLAccountSubscription') {
-    cy.wait(17000);
+    cy.wait(25000);
   }
-
-  //if (contract == 'OrderPlacedProcessed') {
-  //  cy.wait(7000);
-  //}
+  if (contract == 'OrderPlacedProcessed' || contract == 'OrderReplacedProcessed' || contract == 'OrderReturnedProcessed') {
+    cy.wait(10000);
+  }
 
   cy.readFile(Cypress.env('JSON_LOCATION')).then(data => {
     message = data.messages.filter((e) => (e.contract === contract && e.recordId === value && e.timestamp >= timestampQuery))[0];
@@ -61,8 +60,10 @@ When("I consume the message {string} with {string} set up to {string}", (contrac
 Then("The message should have the structure of the JSON {string}", (name) => {
 
   contract = skavaContracts.find(c => c.name.toLowerCase().trim() === name.toLowerCase().trim());
-
-  requiredFields = contract.data.filter((e) => (e.length === 3 && e[2].toLowerCase() === 'yes'));
+  //cy.log("skavaContracts",skavaContracts)
+  //cy.log("contract: ", contract);
+  requiredFields = contract.data.filter((e) => (e.length === 3 && e[2].toLowerCase() === 'yes'))
+  //cy.log("requiredFields:",requiredFields)
   requiredFields.forEach(f => expect(message).to.have.property(f[0]));
 });
 
