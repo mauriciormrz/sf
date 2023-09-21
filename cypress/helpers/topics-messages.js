@@ -41,9 +41,10 @@ const MSG_YL_CUSTOMER_ADDRESS_UPDATED = "YLCustomerAddressUpdated";
 const TOPIC_YL_CUSTOMER_ADDRESS_UPDATED = process.env.TOPIC_PREFIX + "skava.internal.events.yl-customer-addresses";
 
 const TOPIC_ACCOUNTS = process.env.TOPIC_PREFIX + "skava.internal.replies.customers";
-const MSG_SKAVA_ACCOUNT = "SkavaAccount";
-//const MSG_SKAVA_ACCOUNT_PROCESSED = "SkavaAccountProcessed";
-//const MSG_SKAVA_ACCOUNT_CREATED = "SkavaAccountCreated";
+const MSG_SKAVA_ACCOUNT_PROCESSED = "SkavaAccountProcessed";
+
+const TOPIC_CUSTOMER_ADDRESS = process.env.TOPIC_PREFIX + "skava.internal.replies.customer-addresses";
+const MSG_SKAVA_CUSTOMER_ADDRESS = "SkavaCustomerAddressProcessed";
 
 const TOPIC_ORDERS_PROCESSED = process.env.TOPIC_PREFIX + "skava.internal.replies.orders";
 const MSG_ORDER_PLACED_PROCESSED = "OrderPlacedProcessed";
@@ -51,7 +52,14 @@ const MSG_ORDER_REPLACED_PROCESSED = "OrderReplacedProcessed";
 const MSG_ORDER_RETURNED_PROCESSED = "OrderReturnedProcessed";
 
 
-const getMessageInfo = (topic, map) => {
+const getMessageInfo = (topic, headers, map) => {
+
+  let skava, message;
+
+  if (topic.includes("replies")) {
+    [skava, message] = headers.find(x => x['Container:Manifest:contents_type'])['Container:Manifest:contents_type'].toString().split('.');
+    console.log("message:", message);
+  }
 
   if (topic.includes(TOPIC_ORDER_SHIPPED)) {
     return { contract: MSG_ORDER_SHIPPED, recordid: map.get('shipmentId') };
@@ -110,21 +118,23 @@ const getMessageInfo = (topic, map) => {
   }
 
   if (topic.includes(TOPIC_ACCOUNTS)) {
-    return { contract: MSG_SKAVA_ACCOUNT, recordid: map.get('YLCustomerId') };
+    return { contract: MSG_SKAVA_ACCOUNT_PROCESSED, recordid: map.get('YLCustomerId') };
+  }
+
+  if (topic.includes(TOPIC_CUSTOMER_ADDRESS)) {
+    return { contract: MSG_SKAVA_CUSTOMER_ADDRESS, recordid: map.get('ReferenceId') };
   }
 
   if (topic.includes(TOPIC_ORDERS_PROCESSED)) {
-    if (map.get('ReferenceId') === undefined) {
-      return { contract: MSG_ORDER_PLACED_PROCESSED, recordid: map.get('YlCustomerId') };
-    } else {
-      if (map.get('ReferenceId').includes("OrderReplacedProcessed", 0)) {
+    switch (message) {
+      case MSG_ORDER_PLACED_PROCESSED:
+        return { contract: MSG_ORDER_PLACED_PROCESSED, recordid: map.get('YlCustomerId') };
+      case MSG_ORDER_REPLACED_PROCESSED:
         return { contract: MSG_ORDER_REPLACED_PROCESSED, recordid: map.get('YLOrderId') };
-      } else {
+      case MSG_ORDER_RETURNED_PROCESSED:
         return { contract: MSG_ORDER_RETURNED_PROCESSED, recordid: map.get('YLOrderId') };
-      }
     }
   }
-
 
   return { contract: 'unknown', recordid: map.get('unknown') };
 
@@ -147,5 +157,6 @@ module.exports = {
   TOPIC_YL_ACCOUNT_UPDATED,
   TOPIC_YL_CUSTOMER_ADDRESS_UPDATED,
   TOPIC_ACCOUNTS,
+  TOPIC_CUSTOMER_ADDRESS,
   TOPIC_ORDERS_PROCESSED,
 }

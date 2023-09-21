@@ -2,7 +2,7 @@ const Kafka = require('node-rdkafka');
 const fs = require("fs");
 
 
-const sendMessage = async (topic, payload) => {
+const sendMessage = async (entity, topic, payload) => {
   try {
 
     var producer = new Kafka.Producer({
@@ -17,8 +17,7 @@ const sendMessage = async (topic, payload) => {
       'dr_cb': true
     });
 
-    //const request_topic = 'clone.orders.public.requests.orders';
-    const request_topic = process.env.TOPIC_PREFIX + topic + ".public.requests." + topic;
+    const request_topic = process.env.TOPIC_PREFIX + entity + ".public.requests." + topic;
 
     producer.on('ready', function (arg) {
       console.log('producer ready');
@@ -31,6 +30,12 @@ const sendMessage = async (topic, payload) => {
           "Container:Manifest:contents_type": "SkavaUs." + payload
         }
       ]
+
+      //headers: [
+      //  {
+      //    'Container:Manifest:contents_type': <Buffer 53 6b 61 76 61 55 73 2e 4f 72 64 65 72 52 65 74 75 72 6e 65 64 50 72 6f 63 65 73 73 65 64>
+      //  }
+      //]
 
       producer.produce(request_topic, partition, value, key, Date.now(), "", headers);
 

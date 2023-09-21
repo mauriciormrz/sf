@@ -1,0 +1,15 @@
+{
+  "skavaCustomerId": "33278958",
+  "skavaAddressId": "22973282",
+  "addressType": "Shipping",
+  "street1": "1411 6th Ave",
+  "street2": "1201",
+  "street3": null,
+  "city": "New York",
+  "state": "NY",
+  "country": "US",
+  "zip": "10019",
+  "isDefault": true,
+  "referenceId": "33278958_22973282",
+  "ylcustomerId": 1040
+}

@@ -25,12 +25,12 @@ Given("I start the Topic's flows by inserting {string} into {string} table in {s
 });
 
 
-Given("I start the kafka-topic {string} flow by producing {string}", (topic, request_message) => {
+Given("I start the kafka-topic {string}-{string} flow by producing {string}", (entity, topic, request_message) => {
 
   timestampQuery = new Date().getTime();
   cy.writeFile(Cypress.env('JSON_LOCATION'), { "messages": [] });
 
-  cy.task('kafkaMessage', { topic, payload: request_message }).then(
+  cy.task('kafkaMessage', { entity, topic, payload: request_message }).then(
     resolvedValue => {
       expect(resolvedValue).equal(null);
     }

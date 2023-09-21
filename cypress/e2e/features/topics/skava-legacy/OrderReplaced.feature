@@ -8,11 +8,11 @@ Feature: Legacy to Skava Topics Messages
         Given I load the description file of the Contracts "SkavaMessageContracts.xlsx"
 
     Scenario Outline: JSON Message "<reply_message>"
-        Given I start the kafka-topic "<topic>" flow by producing "<request_message>"
+        Given I start the kafka-topic "<entity>"-"<topic>" flow by producing "<request_message>"
         When I consume the message "<reply_message>" with "<recordid>" set up to "<value>"
         Then The message should have the structure of the JSON "<reply_message>"
 
         Examples:
-            | topic  | request_message | reply_message          | recordid  | value     |
-            | orders | OrderReplaced   | OrderReplacedProcessed | YLOrderId | 0 |
+            | entity | topic  | request_message | reply_message          | recordid  | value |
+            | orders | orders | OrderReplaced   | OrderReplacedProcessed | YLOrderId | 0     |
 

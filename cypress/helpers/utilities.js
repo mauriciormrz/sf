@@ -42,10 +42,7 @@ const logMessage = (topic, message) => {
     key: message.key.toString(),
     timestamp: message.timestamp,
     topic: topic,
-    //message: message.value.toString(),
-    headers: message.headers.toString(),
   })
-
 
   const str = message.value.toString().replaceAll("[{", "[],").replaceAll("{", "").replaceAll("}", "").replaceAll("\\", "").replaceAll("\"", "");
   const words = str.split(',');
@@ -63,18 +60,17 @@ const logMessage = (topic, message) => {
 
   try {
     const { messages } = readJSON();
-    const { contract, recordid } = getMessageInfo(topic, map);
+    let { contract, recordid } = getMessageInfo(topic, message.headers, map);
     const timestamp = message.timestamp.toString();
+
     const userObj = JSON.parse(`{"contract": "${contract}","recordId": "${recordid}","timestamp": ${timestamp},${jsonString}}`);
-    //let userObj = JSON.parse(`{"contract": "${getMessageInfo(topic, map).contract}","recordId": "${getMessageInfo(topic, map).recordid}","timestamp": ${message.timestamp.toString()},${jsonString}}`);
-    //let userObj = JSON.parse(message.value);
+
     messages.push(userObj);
     writeJSON(messages);
   } catch (err) {
     console.log(err.message);
   }
 }
-
 
 module.exports = {
   writeJSON,

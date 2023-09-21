@@ -47,8 +47,8 @@ async function setupNodeEvents(on, config) {
 
   //rdkafka producer implementation
   on('task', {
-    kafkaMessage: ({ topic, payload }) => {
-      return kafkaProducer.sendMessage(topic, payload);
+    kafkaMessage: ({ entity, topic, payload }) => {
+      return kafkaProducer.sendMessage(entity, topic, payload);
     }
   });
 
@@ -82,9 +82,9 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents,
     specPattern: [
-      "cypress/e2e/features/storefront/*.feature",
-      "cypress/e2e/features/topics/L2S/*.feature",
-      "cypress/e2e/features/topics/S2L/*.feature",
+      "cypress/e2e/features/storefront/*.feature ",
+      "cypress/e2e/features/topics/L2S/*.feature ",
+      "cypress/e2e/features/topics/S2L/*.feature ",
       "cypress/e2e/features/topics/*.feature",
       "cypress/e2e/features/topics/legacy-skava/*.feature",
       "cypress/e2e/features/topics/skava-legacy/*.feature",
