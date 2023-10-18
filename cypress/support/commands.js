@@ -33,6 +33,9 @@ Cypress.Commands.add('checkIfElemExists', (elem) => {
     cy.get('body').then($body => {
         if ($body.find(elem).length > 0) {
             cy.get(elem).check({ force: true }).should('be.checked');
+            cy.log("exist")
+        } else{
+            cy.log("doesn't")
         }
     });
 })

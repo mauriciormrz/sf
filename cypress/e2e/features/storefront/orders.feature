@@ -9,9 +9,9 @@ Feature: Shopping
 
     Scenario Outline: Order Placed with "<shipping_method>" Shipping, "<payment_method>" Payment and Donation="<donation>"
         When I add the item to the shopping cart
-            | sku  | item                   | quantity | price | pv    |
-            | 3419 | RutaVaLa Essential Oil | 3        | 33.75 | 33.75 |
-            #| 5203 | Lavender Lip Balm      | 1        | 4.25  | 4.25  |
+            | sku  | item              | quantity | price | pv   |
+            | 3419 | RutaVaLa Essential Oil | 1        | 33.75 | 33.75 |
+            #| 5203 | Lavender Lip Balm | 1        | 4.25  | 4.25 |
 
 
         And I checkout the order with donation "<donation>"
@@ -20,7 +20,8 @@ Feature: Shopping
 
         Examples:
             | shipping_method    | payment_method | donation |
-            | Economy            | Credit Card    | Yes      |
+            | Economy            | Credit Card    | No       |
+            #| Standard           | Credit Card    | No       |
             #| Expedited          | PayPal         | No       |
             #| Lehi, UT Will Call | ACH            | Yes      |
 

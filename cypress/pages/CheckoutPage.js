@@ -16,15 +16,9 @@ class CheckoutPage {
         },
 
         paymentMethodContinueBtn: () => cy.get('button.px-5'),
-        brandPartnerStringCheckBox: () => "input#brandPartnerCheckbox",
+        brandPartnerStringCheckBox: () => "#brandPartnerCheckbox",
         submitOrderBtn: () => cy.get('button[data-testid="qa-submit-order"]'),
     }
-
-    submitOrder() {
-        cy.checkIfElemExists(this.elements.brandPartnerStringCheckBox());
-        this.elements.submitOrderBtn().click();
-    }
-
 
     selectShippingMethod(shipping_method) {
         this.elements.shippingMethodChangeLnk().should('be.visible').click();
@@ -48,6 +42,11 @@ class CheckoutPage {
         }
         this.elements.paymentMethodRadioBtn(payment_method).check({ force: true }).should('be.checked');
         this.elements.paymentMethodContinueBtn().click({ force: true });
+    }
+
+    submitOrder() {
+        cy.checkIfElemExists(this.elements.brandPartnerStringCheckBox());
+        this.elements.submitOrderBtn().click();
     }
 }
 

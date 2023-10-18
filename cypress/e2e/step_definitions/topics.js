@@ -1,5 +1,4 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { isNull } from "lodash";
 
 
 Given("I load the description file of the Contracts {string}", (file) => {

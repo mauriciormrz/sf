@@ -78,18 +78,18 @@ async function setupNodeEvents(on, config) {
 }
 
 module.exports = defineConfig({
-  projectId: "7iv7xb",
+  projectId: "4yvku6",
   e2e: {
     setupNodeEvents,
     specPattern: [
-      "cypress/e2e/features/storefront/*.feature ",
-      "cypress/e2e/features/topics/L2S/*.feature ",
-      "cypress/e2e/features/topics/S2L/*.feature ",
-      "cypress/e2e/features/topics/*.feature",
-      "cypress/e2e/features/topics/legacy-skava/*.feature",
-      "cypress/e2e/features/topics/skava-legacy/*.feature",
+      "cypress/e2e/features/api-integration/skava-accounts/*.feature",
+      "cypress/e2e/features/api-integration/skava-orders/*.feature",
+      "cypress/e2e/features/storefront/*.feature",
+      "cypress/e2e/features/kafka-topics/*.feature",
+      "cypress/e2e/features/kafka-topics/legacy-skava/*.feature",
+      "cypress/e2e/features/kafka-topics/skava-legacy/*.feature",
     ],
-    chromeWebSecurity: false,
+    chromeWebSecurity: false,  
     scrollBehavior: false,
     viewportWidth: 1280,
     viewportHeight: 1280,
