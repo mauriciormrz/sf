@@ -45,7 +45,7 @@ When("I consume the message {string} with {string} set up to {string}", (contrac
     cy.wait(25000);
   }
   if (contract == 'OrderPlacedProcessed' || contract == 'OrderReplacedProcessed' || contract == 'OrderReturnedProcessed') {
-    cy.wait(10000);
+    cy.wait(15000);
   }
 
   cy.readFile(Cypress.env('JSON_LOCATION')).then(data => {

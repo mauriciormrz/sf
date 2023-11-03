@@ -34,7 +34,7 @@ Cypress.Commands.add('checkIfElemExists', (elem) => {
         if ($body.find(elem).length > 0) {
             cy.get(elem).check({ force: true }).should('be.checked');
             cy.log("exist")
-        } else{
+        } else {
             cy.log("doesn't")
         }
     });
@@ -45,5 +45,19 @@ Cypress.Commands.add('clickIfElemExists', (elem) => {
         if ($body.find(elem).length > 0) {
             cy.get(elem).should('be.visible').click({ force: true });
         }
+    });
+})
+
+Cypress.Commands.add('apiCall', (request, endpoint, message, messageType) => {
+    cy.readFile('./cypress/fixtures/payloads/' + message + '.json').then((json) => {
+        cy.request(request, `${endpoint}/SkavaUs.${message}`, json).then((response) => {
+            cy.log("Status Code Validation").then(() => {
+                expect(response.status).to.be.equal(200);
+            });
+            cy.log("Body Fields Validation").then(() => {
+                expect(response.body.messageType).to.be.equal('SkavaUs.' + messageType);
+                expect(response.body.body).not.to.be.equal("null");
+            });
+        });
     });
 })

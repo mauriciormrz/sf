@@ -82,7 +82,8 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents,
     specPattern: [
-      "cypress/e2e/features/api-integration/skava-accounts/*.feature",
+      "cypress/e2e/features/api-integration/*.js",
+      "cypress/e2e/features/api-integration/*.feature",
       "cypress/e2e/features/api-integration/skava-orders/*.feature",
       "cypress/e2e/features/storefront/*.feature",
       "cypress/e2e/features/kafka-topics/*.feature",
