@@ -6,7 +6,7 @@ Feature: Legacy to Skava Topics Messages
 
     Background:
         Given I load the description file of the Contracts "SkavaMessageContracts.xlsx"
-@focus 
+
     Scenario Outline: JSON Message "<contract>": <ins_col>: <ins_value>
         Given I start the Topic's flows by inserting "<ins_value>" into "<QueueTable>" table in "<db>"
         When I consume the message "<contract>" with "<recordid>" set up to "<value>"

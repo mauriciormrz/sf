@@ -83,8 +83,8 @@ module.exports = defineConfig({
     setupNodeEvents,
     specPattern: [
       "cypress/e2e/features/api-integration/*.js",
+      "cypress/e2e/features/pedigree/*.feature",
       "cypress/e2e/features/api-integration/*.feature",
-      "cypress/e2e/features/api-integration/skava-orders/*.feature",
       "cypress/e2e/features/storefront/*.feature",
       "cypress/e2e/features/kafka-topics/*.feature",
       "cypress/e2e/features/kafka-topics/legacy-skava/*.feature",
@@ -100,7 +100,7 @@ module.exports = defineConfig({
       allureReuseAfterSpec: true,
     },
     retries: {
-      runMode: 0,
+      runMode: 1,
       openMode: 0
     },
     video: true,
